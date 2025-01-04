@@ -183,3 +183,45 @@ console.log("Total", +order1.getPayment().getAmount() + " ฿");
 console.log("Recive", +order1.getPayment().getCashTendered() + " ฿");
 console.log("Change", +order1.getPayment().getChange() + " ฿");
 console.log("##################################################################");
+
+// Create new Customer
+const customer2 = new Customer("Somchai Yodchai", "123 Sukhumvit Road, Bangkok");
+console.log(customer2.getInfo());
+
+// Create new Items
+const item4 = new Item(2.0, "Green Tea", 20);
+console.log(item4.getInfo());
+const item5 = new Item(0.3, "Pepsi", 25);
+console.log(item5.getInfo());
+const item6 = new Item(0.5, "Noodles", 12);
+console.log(item6.getInfo());
+
+console.log("############################# New Order #############################");
+// Create new Order
+const order2 = new Order("18/12/2024", "in progress", customer2);
+
+// Add Order Details
+const orderdetail4 = new OrderDetail(3, "not included", item4);
+const orderdetail5 = new OrderDetail(1, "not included", item5);
+const orderdetail6 = new OrderDetail(4, "not included", item6);
+
+// Add Order Details to Order
+order2.addOrderDetails(orderdetail4);
+order2.addOrderDetails(orderdetail5);
+order2.addOrderDetails(orderdetail6);
+
+// Calculate total amount
+const amount2 = order2.calcTotal();
+
+// Payment
+const cash2 = new Cash(amount2, 500);
+order2.printDetail();
+order2.payOrder(cash2);
+
+// Print Order Summary
+console.log("SubtoTal: " + order2.calcSubtotal() + " ฿");
+console.log("Vat: " + order2.calcTax() + " ฿");
+console.log("Total: " + order2.getPayment().getAmount() + " ฿");
+console.log("Recive: " + order2.getPayment().getCashTendered() + " ฿");
+console.log("Change: " + order2.getPayment().getChange() + " ฿");
+console.log("##################################################################");
